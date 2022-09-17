@@ -6,7 +6,7 @@ import { hoursToMinutes, minutesToHours } from "./utils/timer-converter";
 const app = express();
 app.use(express.json());
 app.use(cors({
-  // ADD DOMAINS HERE
+  origin: ['http://localhost:5173', 'exp://192.168.226.211:19000'],
 }));
 
 const prisma = new PrismaClient({
@@ -30,7 +30,7 @@ app.get('/games', async (req, res) => {
 
 // publish ads
 app.post('/games/:id/ads', async (req, res) => {
-  const gameId = req.params.id;
+  const gameId: string = req.params.id;
 
   const body: any = req.body;
   const ad = await prisma.ad.create({
