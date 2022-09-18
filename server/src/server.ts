@@ -6,7 +6,7 @@ import { hoursToMinutes, minutesToHours } from "./utils/timer-converter";
 const app = express();
 app.use(express.json());
 app.use(cors({
-  origin: ['http://localhost:5173', 'exp://192.168.226.211:19000'],
+  // origin: ['http://localhost:5173', 'exp://192.168.226.211:19000'],
 }));
 
 const prisma = new PrismaClient({

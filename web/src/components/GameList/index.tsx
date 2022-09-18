@@ -1,10 +1,13 @@
+// libs
+import axios from "axios";
+
 // react
 import { useEffect, useState } from "react";
 
 // components
 import GameBanner from "./GameBanner";
 
-interface Game {
+export interface Game {
     idGame: string,
     title: string
     bannerUrl: string,
@@ -13,13 +16,12 @@ interface Game {
 export default function GameList() {
     const [games, setGames] = useState<Game[]>([]);
     useEffect(() => {
-        fetch('http://localhost:3333/games', {
+        axios('http://localhost:3333/games', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
             }
-        }).then(res => res.json())
-            .then(res => setGames(res))
+        }).then(res => setGames(res.data))
             .catch(err => console.log(err));
     }, []);
 
